@@ -52,7 +52,7 @@ public class AddItemsinCanteen {
         System.out.println("TOTAL amount is : " + totalAmount);
     }
 
-    static void cancellOrderFunction(List<UserListData> l, int id, int q) {
+    static void cancelOrderFunction(List<UserListData> l, int id, int q) {
         id--;
         if(l.isEmpty()){
             System.out.println("SORRY :<<<>>>:<<<<>>>:");

@@ -16,7 +16,7 @@ public class SineStarCanteen {
             System.out.println("Enter user ,  what they want : ");
             System.out.println("1------List All items");
             System.out.println("2------take order");
-            System.out.println("3------cancell order by user");
+            System.out.println("3------cancel order by user");
             System.out.println("4------List item user order in current state");
             System.out.println("5------DONE exit user");
             int chs = scan.nextInt();
@@ -36,7 +36,7 @@ public class SineStarCanteen {
                     int id1 = scan.nextInt();
                     System.out.println("How many Qty remove in list : ");
                     int qty1 = scan.nextInt();
-                    AddItemsinCanteen.cancellOrderFunction(l,id1,qty1);
+                    AddItemsinCanteen.cancelOrderFunction(l,id1,qty1);
                     break;
                 case 4:
                     AddItemsinCanteen.OrderListUser(l);
