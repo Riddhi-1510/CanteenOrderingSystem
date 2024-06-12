@@ -1,4 +1,7 @@
-# Canteen Management System
+# Canteen Ordering System
+
+<img src="https://github.com/Riddhi-1510/CanteenOrderingSystem/assets/122283883/db1de6a7-44e7-4895-9750-c903ce750821" alt="Screenshot 2024-06-12 130048" width="700" height="200">
+
 
 This project is a simple canteen management system implemented in Java. It provides basic functionalities for managing a canteen's inventory and handling customer orders.
 
@@ -14,3 +17,4 @@ This project is a simple canteen management system implemented in Java. It provi
   - Place orders for desired items.
   - Cancel orders if needed.
   - View current orders and their status.
+
