@@ -6,18 +6,22 @@ public class SineStarCanteen {
 
     public static void main(String[] args) {
 
-        System.out.println("// -----------------------------------------------------//");
+        System.out.println("// ----------------------------------------------------//");
         System.out.println("//                .....Operations.......               //");
         System.out.println("//                ......Performed.......               //");
         System.out.println("//                .........By...........               //");
         System.out.println("//                .......Canteen........               //");
         System.out.println("//                .........at...........               //");
         System.out.println("//                .......DAIICT.........               //");
-        System.out.println("// -----------------------------------------------------//");
+        System.out.println("// ----------------------------------------------------//");
 
         Scanner scan = new Scanner(System.in);
 
         List<UserListData> l = new ArrayList<UserListData>();// list for user
+
+        // for owner set password and name
+        AuthForOwner afo = new AuthForOwner();
+        afo.setPassword("pass9080");// default password set for owner
 
         while (true) {
             System.out.println("1 - Owner");
@@ -31,43 +35,49 @@ public class SineStarCanteen {
             }
             switch (ch) {
                 case 1:
-                    while (true) {
-                        System.out.println("1 - Add Items");
-                        System.out.println("2 - View All Items");
-                        System.out.println("3 - Update Item Price");
-                        System.out.println("4 - Delete Item");
-                        System.out.println("5 - Exit Owner Menu");
-                        System.out.println("Please select an option: ");
-                        int choise = scan.nextInt();
-                        if (choise == 5) {
-                            System.out.println("Exiting the Owner menu...");
-                            break;
-                        }
-                        switch (choise) {
-                            case 1:
-                                AddItemsinCanteen.addITEMS();
+                    if (afo.auth()) {
+                        System.out.println("successfully Authorized");
+                        while (true) {
+                            System.out.println("1 - Add Items");
+                            System.out.println("2 - View All Items");
+                            System.out.println("3 - Update Item Price");
+                            System.out.println("4 - Delete Item");
+                            System.out.println("5 - Exit Owner Menu");
+                            System.out.println("Please select an option: ");
+                            int choise = scan.nextInt();
+                            if (choise == 5) {
+                                System.out.println("Exiting the Owner menu...");
                                 break;
-                            case 2:
-                                System.out.println("List of all available items in the canteen:");
-                                AddItemsinCanteen.AllitemsInCanteenAvL();
-                                break;
-                            case 3:// update the item price
-                                System.out.println("Enter item ID to update: ");
-                                int id = scan.nextInt();
-                                System.out.println("Enter new price: ");
-                                int price = scan.nextInt();
-                                AddItemsinCanteen.updatePrice(id, price);
-                                break;
-                            case 4:// delete  
-                                System.out.println("Enter item ID to delete: ");
-                                int id1 = scan.nextInt(); 
-                                AddItemsinCanteen.deleteItem(id1);
-                                break;
-                            default:
-                                System.out.println("Invalid selection. Please try again.");
-                                break;
+                            }
+                            switch (choise) {
+                                case 1:
+                                    AddItemsinCanteen.addITEMS();
+                                    break;
+                                case 2:
+                                    System.out.println("List of all available items in the canteen:");
+                                    AddItemsinCanteen.AllitemsInCanteenAvL();
+                                    break;
+                                case 3:// update the item price
+                                    System.out.println("Enter item ID to update: ");
+                                    int id = scan.nextInt();
+                                    System.out.println("Enter new price: ");
+                                    int price = scan.nextInt();
+                                    AddItemsinCanteen.updatePrice(id, price);
+                                    break;
+                                case 4:// delete
+                                    System.out.println("Enter item ID to delete: ");
+                                    int id1 = scan.nextInt();
+                                    AddItemsinCanteen.deleteItem(id1);
+                                    break;
+                                default:
+                                    System.out.println("Invalid selection. Please try again.");
+                                    break;
+                            }
+
                         }
 
+                    } else {
+                        System.out.println("password is wrong for Authorized");
                     }
                     break;
                 case 2:
