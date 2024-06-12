@@ -33,14 +33,31 @@ public class AddItemsinCanteen {
     }
 
     static void updatePrice(int id, int updatePrice) {
+        boolean flag=false;
         for (EachItemData item : items) {
             if (item.getId() == id) {
                 item.setPrice(updatePrice);
+                flag=true;
                 break;
             }
         }
+        if(flag==false){
+            System.out.println("Not a valid Id");
+        }
     }
-
+    static void deleteItem(int id) {
+        boolean flag = false;
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i).getId() == id) {
+                items.remove(i);
+                flag=true;
+                break; 
+            }
+        }
+        if(flag==false){
+            System.out.println("Not a valid Id");
+        }
+    }
     static void AllitemsInCanteenAvL() {
         items.forEach(item -> {
             System.out.println("ID  : " + item.getId() + " Item_name : " + item.getItem_name() + " ItemPrice : "
@@ -62,6 +79,16 @@ public class AddItemsinCanteen {
     }
 
     static void cancelOrderFunction(List<UserListData> l, int id, int q) {
+        boolean flag=false;
+        for(int i=0;i<items.size();i++){
+            if(items.get(i).getId()==id){
+                flag=true;
+            }
+        }
+        if(flag==false){
+            System.out.println("Not a valid Id");
+            return;
+        }
         id--;
         if (l.isEmpty()) {
             System.out.println("SORRY :<<<>>>:<<<<>>>:");
@@ -79,20 +106,20 @@ public class AddItemsinCanteen {
             // update the list
             ((UserListData) l.get(id)).setQty(qty - q);
 
-            boolean flag = true;
+            boolean flag1 = true;
             if (!items.isEmpty()) {
                 for (EachItemData itm : items) {
                     if (itm.getId() == id + 1) {
                         int qty1 = itm.getQty();
                         itm.setQty(qty1 + q);
-                        flag = false;
+                        flag1 = false;
                         break;
                     }
                 }
                 // System.out.println(items);
             }
 
-            if (flag == true) {// if item is finish then remove after added then new add available QTY
+            if (flag1 == true) {// if item is finish then remove after added then new add available QTY
                 EachItemData eld = new EachItemData();
                 eld.setId(eid.getId());
                 eld.setItem_name(eid.getItem_name());
@@ -105,6 +132,16 @@ public class AddItemsinCanteen {
     }
 
     static void takeOrderFunction(List<UserListData> l, int id, int q) {
+        boolean flag=false;
+        for(int i=0;i<items.size();i++){
+            if(items.get(i).getId()==id){
+                flag=true;
+            }
+        }
+        if(flag==false){
+            System.out.println("Not a valid Id");
+            return;
+        }
         id--;
 
         EachItemData eid = items.get(id);
@@ -122,21 +159,21 @@ public class AddItemsinCanteen {
             }
             // System.out.println(items);
         }
-        boolean flag = true;
+        boolean flag1 = true;
         if (!l.isEmpty()) {// update the user list
             for (UserListData itm : l) {
                 if (itm.getId() == id + 1) {
 
                     int qty = l.get(id).getQty();
                     l.get(id).setQty(q + qty);
-                    flag = false;
+                    flag1 = false;
                     break;
 
                 }
             }
             // System.out.println(items);
         }
-        if (flag == true) {// if user fresh order then create new food item
+        if (flag1 == true) {// if user fresh order then create new food item
             UserListData uld = new UserListData();
             uld.setId(eid.getId());
             uld.setItem_name(eid.getItem_name());
@@ -149,5 +186,7 @@ public class AddItemsinCanteen {
         }
         // System.out.println(items);
     }
+
+    
 
 }

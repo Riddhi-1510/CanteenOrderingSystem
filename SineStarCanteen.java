@@ -35,10 +35,11 @@ public class SineStarCanteen {
                         System.out.println("1 - Add Items");
                         System.out.println("2 - View All Items");
                         System.out.println("3 - Update Item Price");
-                        System.out.println("4 - Exit Owner Menu");
+                        System.out.println("4 - Delete Item");
+                        System.out.println("5 - Exit Owner Menu");
                         System.out.println("Please select an option: ");
                         int choise = scan.nextInt();
-                        if (choise == 4) {
+                        if (choise == 5) {
                             System.out.println("Exiting the Owner menu...");
                             break;
                         }
@@ -56,6 +57,11 @@ public class SineStarCanteen {
                                 System.out.println("Enter new price: ");
                                 int price = scan.nextInt();
                                 AddItemsinCanteen.updatePrice(id, price);
+                                break;
+                            case 4:// delete  
+                                System.out.println("Enter item ID to delete: ");
+                                int id1 = scan.nextInt(); 
+                                AddItemsinCanteen.deleteItem(id1);
                                 break;
                             default:
                                 System.out.println("Invalid selection. Please try again.");
