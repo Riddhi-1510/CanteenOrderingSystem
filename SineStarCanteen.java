@@ -1,43 +1,44 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.UUID;
 
 public class SineStarCanteen {
 
     public static void main(String[] args) {
 
         System.out.println("// ----------------------------------------------------//");
-        System.out.println("//                .....Operations.......               //");
+        System.out.println("//                ......Operations......               //");
         System.out.println("//                ......Performed.......               //");
         System.out.println("//                .........By...........               //");
         System.out.println("//                .......Canteen........               //");
         System.out.println("//                .........at...........               //");
-        System.out.println("//                .......DAIICT.........               //");
+        System.out.println("//                .........DAU..........               //");
         System.out.println("// ----------------------------------------------------//");
 
         Scanner scan = new Scanner(System.in);
-
-        List<UserListData> l = new ArrayList<UserListData>();// list for user
-
-        // for owner set password and name
+        String sessionId = UUID.randomUUID().toString(); 
+        
+        List<UserListData> l = new ArrayList<UserListData>(); 
+ 
         AuthForOwner afo = new AuthForOwner();
-        afo.setPassword("pass9080");// default password set for owner
+        afo.setPassword("pass9080"); 
 
-        while (true) {
+        while(true){
             System.out.println("1 - Owner");
             System.out.println("2 - Customer");
             System.out.println("3 - ExitProgram");
             System.out.println("Please select your role: ");
             int ch = scan.nextInt();
-            if (ch == 3) {
-                System.out.println("Exit DAIICT canteen");
+            if(ch == 3){
+                System.out.println("Exit DAU canteen");
                 break;
             }
-            switch (ch) {
+            switch(ch){
                 case 1:
-                    if (afo.auth()) {
+                    if(afo.auth()){
                         System.out.println("successfully Authorized");
-                        while (true) {
+                        while(true){
                             System.out.println("1 - Add Items");
                             System.out.println("2 - View All Items");
                             System.out.println("3 - Update Item Price");
@@ -57,14 +58,14 @@ public class SineStarCanteen {
                                     System.out.println("List of all available items in the canteen:");
                                     AddItemsinCanteen.AllitemsInCanteenAvL();
                                     break;
-                                case 3:// update the item price
+                                case 3: 
                                     System.out.println("Enter item ID to update: ");
                                     int id = scan.nextInt();
                                     System.out.println("Enter new price: ");
                                     int price = scan.nextInt();
                                     AddItemsinCanteen.updatePrice(id, price);
                                     break;
-                                case 4:// delete
+                                case 4: 
                                     System.out.println("Enter item ID to delete: ");
                                     int id1 = scan.nextInt();
                                     AddItemsinCanteen.deleteItem(id1);
@@ -82,7 +83,7 @@ public class SineStarCanteen {
                     break;
                 case 2:
 
-                    while (true) {
+                    while(true){
                         System.out.println("1 - View All Items");
                         System.out.println("2 - Place Order");
                         System.out.println("3 - Cancel Order");
@@ -90,11 +91,11 @@ public class SineStarCanteen {
                         System.out.println("5 - Exit Customer Menu");
                         System.out.println("Please select an option: ");
                         int choise = scan.nextInt();
-                        if (choise == 5) {
+                        if(choise == 5){
                             System.out.println("Exiting the customer menu...");
                             break;
                         }
-                        switch (choise) {
+                        switch(choise){
                             case 1:
                                 AddItemsinCanteen.AllitemsInCanteenAvL();
                                 break;
@@ -103,17 +104,17 @@ public class SineStarCanteen {
                                 int id = scan.nextInt();
                                 System.out.println("Enter quantity: ");
                                 int qty = scan.nextInt();
-                                AddItemsinCanteen.takeOrderFunction(l, id, qty);
+                                AddItemsinCanteen.takeOrderFunction(l,id,qty,sessionId);
                                 break;
                             case 3:
                                 System.out.println("Enter item ID to cancel: ");
                                 int id1 = scan.nextInt();
                                 System.out.println("Enter quantity to remove: ");
                                 int qty1 = scan.nextInt();
-                                AddItemsinCanteen.cancelOrderFunction(l, id1, qty1);
+                                AddItemsinCanteen.cancelOrderFunction(sessionId, id1, qty1);
                                 break;
                             case 4:
-                                AddItemsinCanteen.OrderListUser(l);
+                                AddItemsinCanteen.OrderListUser(sessionId);
                                 break;
                             default:
                                 System.out.println("Invalid selection. Please try again.");
