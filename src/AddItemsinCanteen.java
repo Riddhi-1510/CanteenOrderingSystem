@@ -168,7 +168,7 @@ public class AddItemsinCanteen {
 
             int orderQty = rs.getInt("qty");
             String itemName = rs.getString("item_name");
-            double price = rs.getDouble("price");
+            // double price = rs.getDouble("price");
 
             if(q > orderQty) {
                 System.out.println("SORRY: You cannot cancel more than ordered.");
